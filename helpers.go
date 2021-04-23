@@ -19,12 +19,13 @@ func readFileToStringArray(fname string) ([]string, error) {
 	panicIfError(err)
 	defer file.Close()
 	scanner := bufio.NewScanner(file)
-	scanner.Split(bufio.ScanWords)
+	scanner.Split(bufio.ScanLines)
 
 	words := make([]string, 0)
 
 	for scanner.Scan() {
-		words = append(words, strings.ToLower(scanner.Text()))
+		line := strings.ToLower(scanner.Text())
+		words = append(words, strings.Split(line, " ")...)
 	}
 
 	return words, scanner.Err()
