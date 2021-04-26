@@ -46,7 +46,7 @@ func writeMapToFile(mp map[string]int, path string) error {
 		if ss[i].Value == ss[j].Value {
 			return ss[i].Key < ss[j].Key
 		}
-		return ss[i].Value > ss[j].Value 
+		return ss[i].Value > ss[j].Value
 	})
 
 	file, err := os.Create(path)
@@ -54,7 +54,7 @@ func writeMapToFile(mp map[string]int, path string) error {
 	defer file.Close()
 	writer := bufio.NewWriter(file)
 	for _, kv := range ss {
-		fmt.Fprintln(writer, kv.Key, ":", kv.Value," ")
+		fmt.Fprintln(writer, kv.Key, ":", kv.Value,"")
 	}
 	return writer.Flush()
 }
